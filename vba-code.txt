@@ -1,5 +1,5 @@
 Option Explicit
-
+Application.ScreenUpdating = False
 Public Sub FindHighlightAndBold()
 
     Dim WordApp As Word.Application
