@@ -1,0 +1,24 @@
+Option Explicit
+
+Public Sub FindHighlightAndBold()
+
+    Dim WordApp As Word.Application
+    Dim MyWordDocument As Word.Document
+    Dim Counter As Long
+    
+    Set WordApp = New Word.Application
+    Set MyWordDocument = ActiveDocument   'Word.Application.Documents.Open("C:\test.docx")
+    For Counter = 1 To MyWordDocument.Sentences.Count
+        With MyWordDocument.Sentences(Counter)
+            If Left$(.Text, 1) = "$" Then
+                .Bold = True
+                .HighlightColorIndex = wdYellow
+                
+            End If
+        End With
+    Next
+    
+
+Application.ScreenUpdating = True
+End Sub
+
