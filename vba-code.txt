@@ -7,17 +7,22 @@ Public Sub FindHighlightAndBold()
     Dim Counter As Long
     
     Set WordApp = New Word.Application
-    Set MyWordDocument = ActiveDocument   'Word.Application.Documents.Open("C:\test.docx")
+    Set MyWordDocument = ActiveDocument
+    
+    ActiveDocument.Content.InsertAfter Text:=vbCrLf
+    ActiveDocument.Content.InsertAfter Text:="List of highlighted commands:"
+    ActiveDocument.Content.InsertAfter Text:=vbCrLf
+    
     For Counter = 1 To MyWordDocument.Sentences.Count
         With MyWordDocument.Sentences(Counter)
             If Left$(.Text, 1) = "$" Then
                 .Bold = True
                 .HighlightColorIndex = wdYellow
-                
+                .Copy
+                MyWordDocument.Range.Characters.Last.Paste
             End If
         End With
     Next
-    
 
 Application.ScreenUpdating = True
 End Sub
